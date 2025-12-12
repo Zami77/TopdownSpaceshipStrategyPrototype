@@ -1,0 +1,113 @@
+[gd_scene load_steps=15 format=3 uid="uid://b4mtaumqtpesk"]
+
+[ext_resource type="PackedScene" uid="uid://bc8x3ibidm0y4" path="res://src/units/Unit.tscn" id="1_bugob"]
+[ext_resource type="Texture2D" uid="uid://ckejpg4i8d2vd" path="res://src/units/Tank/Simple_Tank_Firing.png" id="2_4tgnf"]
+[ext_resource type="Texture2D" uid="uid://bcfden85wg7ip" path="res://src/units/Tank/Simple_Tank_Idle.png" id="2_ru4t0"]
+[ext_resource type="Texture2D" uid="uid://beqokcn0tllhy" path="res://src/units/Tank/Simple_Tank_Drive.png" id="4_urw4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ablj6"]
+atlas = ExtResource("2_4tgnf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0da2"]
+atlas = ExtResource("2_4tgnf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf2yt"]
+atlas = ExtResource("2_4tgnf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjka2"]
+atlas = ExtResource("2_ru4t0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6s3t"]
+atlas = ExtResource("2_ru4t0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbgyl"]
+atlas = ExtResource("2_ru4t0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3mue"]
+atlas = ExtResource("4_urw4n")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bubym"]
+atlas = ExtResource("4_urw4n")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpoie"]
+atlas = ExtResource("4_urw4n")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ablj6"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ablj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0da2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf2yt")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjka2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6s3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbgyl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3mue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bubym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpoie")
+}],
+"loop": true,
+"name": &"move",
+"speed": 20.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"take_damage",
+"speed": 5.0
+}]
+
+[node name="Tank" instance=ExtResource("1_bugob")]
+can_attack = Array[int]([0])
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ablj6")
+animation = &"attack"
+frame = 2
+frame_progress = 1.0
+centered = false
