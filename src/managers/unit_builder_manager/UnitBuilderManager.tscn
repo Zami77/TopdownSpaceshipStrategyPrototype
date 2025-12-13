@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgrnnw3bmxul0"]
+
+[ext_resource type="Script" uid="uid://woxq1gn2kx74" path="res://src/managers/unit_builder_manager/unit_builder_manager.gd" id="1_tngka"]
+
+[node name="UnitBuilderManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tngka")
+
+[node name="UnitOptions" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UnitSelectButton" type="Button" parent="UnitOptions"]
+layout_mode = 2

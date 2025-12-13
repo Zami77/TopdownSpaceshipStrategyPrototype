@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://fmkok0dgxsf"]
+
+[ext_resource type="PackedScene" uid="uid://dswvtnyi4rys4" path="res://src/managers/resource_manager/ResourceManager.tscn" id="1_7xb45"]
+[ext_resource type="Script" uid="uid://r3hhd6qep1fj" path="res://src/managers/player_manager/player_manager.gd" id="1_deaka"]
+
+[node name="PlayerManager" type="Node2D"]
+script = ExtResource("1_deaka")
+
+[node name="ResourceManager" parent="." instance=ExtResource("1_7xb45")]
+
+[node name="PlayerInfo" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResourcesLabel" type="Label" parent="PlayerInfo"]
+layout_mode = 2
+text = "Resources: "

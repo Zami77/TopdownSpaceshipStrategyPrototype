@@ -5,8 +5,13 @@ class_name Unit
 @export var attack_damage := 1
 @export var attack_cool_down := 1.0
 @export var vision_range := 3
+@export var speed := 1.0
+@export var rotation_speed := 1.0
 @export var unit_type_altitude := UnitTypeAltitude.GROUND
 @export var can_attack :Array[UnitTypeAltitude] = []
+@export var cost := 100
+@export var time_to_build := 10.0
+@export var supply_cost := 2
 
 @onready var animated_sprite := $AnimatedSprite2D
 @onready var unit_vision := $UnitVisionArea2D

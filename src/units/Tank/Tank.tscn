@@ -110,4 +110,3 @@ sprite_frames = SubResource("SpriteFrames_ablj6")
 animation = &"attack"
 frame = 2
 frame_progress = 1.0
-centered = false
