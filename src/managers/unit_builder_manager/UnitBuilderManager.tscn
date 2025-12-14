@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgrnnw3bmxul0"]
+[gd_scene load_steps=3 format=3 uid="uid://bgrnnw3bmxul0"]
 
 [ext_resource type="Script" uid="uid://woxq1gn2kx74" path="res://src/managers/unit_builder_manager/unit_builder_manager.gd" id="1_tngka"]
+[ext_resource type="PackedScene" uid="uid://buu38s6g5564n" path="res://src/managers/unit_builder_manager/UnitSelectButton/UnitSelectButton.tscn" id="2_be6n3"]
 
 [node name="UnitBuilderManager" type="Control"]
 layout_mode = 3
@@ -16,5 +17,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="UnitSelectButton" type="Button" parent="UnitOptions"]
+[node name="UnitSelectButton" parent="UnitOptions" instance=ExtResource("2_be6n3")]
 layout_mode = 2
+text = "Tank"

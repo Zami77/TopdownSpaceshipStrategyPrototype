@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://buu38s6g5564n"]
+
+[ext_resource type="Script" uid="uid://fbc7redypxxb" path="res://src/managers/unit_builder_manager/UnitSelectButton/unit_select_button.gd" id="1_s7lde"]
+[ext_resource type="Texture2D" uid="uid://bcfden85wg7ip" path="res://src/units/Tank/Simple_Tank_Idle.png" id="1_ukenr"]
+
+[node name="UnitSelectButton" type="Button"]
+text = "Unit Select"
+icon = ExtResource("1_ukenr")
+script = ExtResource("1_s7lde")

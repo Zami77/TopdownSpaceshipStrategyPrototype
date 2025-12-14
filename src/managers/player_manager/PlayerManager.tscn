@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://fmkok0dgxsf"]
+[gd_scene load_steps=4 format=3 uid="uid://fmkok0dgxsf"]
 
 [ext_resource type="PackedScene" uid="uid://dswvtnyi4rys4" path="res://src/managers/resource_manager/ResourceManager.tscn" id="1_7xb45"]
 [ext_resource type="Script" uid="uid://r3hhd6qep1fj" path="res://src/managers/player_manager/player_manager.gd" id="1_deaka"]
+[ext_resource type="PackedScene" uid="uid://bgrnnw3bmxul0" path="res://src/managers/unit_builder_manager/UnitBuilderManager.tscn" id="3_et5sl"]
 
 [node name="PlayerManager" type="Node2D"]
 script = ExtResource("1_deaka")
@@ -15,3 +16,14 @@ offset_bottom = 40.0
 [node name="ResourcesLabel" type="Label" parent="PlayerInfo"]
 layout_mode = 2
 text = "Resources: "
+
+[node name="UnitBuilderManager" parent="." instance=ExtResource("3_et5sl")]
+offset_left = 64.0
+offset_top = 512.0
+offset_right = 64.0
+offset_bottom = 512.0
+
+[node name="UnitHolder" type="Node2D" parent="."]
+
+[node name="UnitSpawnPoint" type="Node2D" parent="."]
+position = Vector2(448, 512)

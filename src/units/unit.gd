@@ -21,6 +21,7 @@ var current_state: ActionState = ActionState.IDLE
 
 enum UnitTypeAltitude { GROUND = 0, AIR = 1 }
 enum ActionState { IDLE = 0, MOVE = 1, ATTACK = 2, DEATH = 3 }
+enum UnitType { TANK = 0 }
 
 func _ready():
 	_setup_vision_range()
