@@ -46,15 +46,20 @@ script = ExtResource("1_5c4v2")
 sprite_frames = SubResource("SpriteFrames_5c4v2")
 animation = &"death"
 
+[node name="UnitVisionArea2D" type="Area2D" parent="."]
+position = Vector2(-32, -32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="UnitVisionArea2D"]
+polygon = PackedVector2Array(32, 32, -32, -32, 96, -32)
+
 [node name="UnitArea2D" type="Area2D" parent="."]
 position = Vector2(-32, -32)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnitArea2D"]
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_5c4v2")
 
-[node name="UnitVisionArea2D" type="Area2D" parent="."]
-position = Vector2(-32, -32)
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="UnitVisionArea2D"]
-polygon = PackedVector2Array(32, 32, -32, -32, 96, -32)
+[connection signal="area_entered" from="UnitVisionArea2D" to="." method="_on_unit_vision_area_2d_area_entered"]

@@ -10,4 +10,3 @@ script = ExtResource("1_ne37v")
 wait_time = 0.1
 
 [node name="PlayerManager" parent="." instance=ExtResource("2_8uuf2")]
-player_number = 1
