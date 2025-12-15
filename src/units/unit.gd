@@ -53,8 +53,3 @@ func _handle_unit_execution(delta):
 	# TODO: Add logic to search for enemies and attack if any are in range
 	# TODO: 
 	pass
-
-
-func _on_unit_vision_area_2d_area_entered(area: Area2D) -> void:
-	print(area)
-	pass # Replace with function body.
