@@ -47,6 +47,12 @@ func _on_main_menu_option_selected(option: MainMenu.Option) -> void:
 	match option:
 		MainMenu.Option.PLAY_GAME:
 			_load_scene(ScenePaths.match_manager)
+		MainMenu.Option.HOST_GAME:
+			NetworkManager.host_game()
+			_load_scene(ScenePaths.match_manager)
+		MainMenu.Option.JOIN_GAME:
+			NetworkManager.join_game()
+			_load_scene(ScenePaths.match_manager)
 		MainMenu.Option.SETTINGS:
 			_load_scene(ScenePaths.settings_menu)
 		MainMenu.Option.CREDITS:

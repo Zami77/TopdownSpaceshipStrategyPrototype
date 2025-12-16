@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf8r25qehluc0"]
+[gd_scene load_steps=4 format=3 uid="uid://cf8r25qehluc0"]
 
 [ext_resource type="Script" uid="uid://bblhuok1xgi0r" path="res://src/managers/match_manager/match_manager.gd" id="1_ne37v"]
 [ext_resource type="PackedScene" uid="uid://fmkok0dgxsf" path="res://src/managers/player_manager/PlayerManager.tscn" id="2_8uuf2"]
+[ext_resource type="Script" uid="uid://gfl68mjo0w2q" path="res://src/ui/default_button/DefaultButton.gd" id="3_yh6h2"]
 
 [node name="MatchManager" type="Node2D"]
 script = ExtResource("1_ne37v")
@@ -10,3 +11,14 @@ script = ExtResource("1_ne37v")
 wait_time = 0.1
 
 [node name="PlayerManager" parent="." instance=ExtResource("2_8uuf2")]
+
+[node name="SendTestMessageButton" type="Button" parent="."]
+offset_left = 832.0
+offset_top = 64.0
+offset_right = 1024.0
+offset_bottom = 120.0
+text = "Send Test Message"
+script = ExtResource("3_yh6h2")
+metadata/_custom_type_script = "uid://gfl68mjo0w2q"
+
+[connection signal="button_up" from="SendTestMessageButton" to="." method="_on_send_test_message_button_button_up"]
