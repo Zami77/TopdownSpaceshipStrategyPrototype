@@ -5,6 +5,8 @@ var possible_spawn_points: Array[SpawnPoint] = []
 var player_manager_spawn_point = null
 var network_id_to_spawn_point := {}
 
+signal player_added(player_added: PlayerManager)
+
 func setup_spawn_manager() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -34,4 +36,7 @@ func _add_player_to_game(network_id):
 	var spawn_point_pos = possible_spawn_points.pop_back()
 	network_id_to_spawn_point[player_to_add.network_id] = spawn_point_pos
 	player_manager_spawn_point.add_child(player_to_add)
-	player_to_add.global_position = network_id_to_spawn_point[player_to_add.network_id].global_position
+	player_to_add.setup_networking()
+	#player_to_add.global_position = network_id_to_spawn_point[player_to_add.network_id].global_position
+	
+	emit_signal("player_added", player_to_add)

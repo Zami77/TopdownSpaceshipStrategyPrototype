@@ -21,7 +21,10 @@ func _ready():
 	resource_manager.resources_changed.connect(_refresh_player_info)
 	unit_builder_manager.attempt_to_build_unit.connect(_handle_attempt_to_build_unit)
 	_refresh_player_info()
-		
+
+func setup_networking():
+	multiplayer_synchronizer.set_visibility_for(network_id, true)
+	
 func _refresh_player_info():
 	resources_label.text = "Resources: %s" % [resource_manager.current_resources]
 

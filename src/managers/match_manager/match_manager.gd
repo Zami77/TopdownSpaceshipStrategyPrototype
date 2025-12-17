@@ -5,6 +5,7 @@ class_name MatchManager
 @onready var send_test_message_button: DefaultButton = $NetworkDebugVBox/SendTestMessageButton
 @onready var main_menu_button: DefaultButton = $NetworkDebugVBox/MainMenuButton
 @onready var unit_holder: Node2D = $UnitHolder
+@onready var player_spawn_point = $PlayerSpawnPoint
 
 var current_tick := 0.0
 
@@ -16,14 +17,24 @@ func _ready():
 	_start_match()
 
 func _setup_networking():
-	# TODO: add logic to check if it's a multiplayer match or not
 	if NetworkManager.is_host():
 		var spawn_manager: SpawnManager = ScenePaths.spawn_manager_instance.instantiate()
 		add_child(spawn_manager)
+		spawn_manager.player_added.connect(_on_player_manager_added)
 		spawn_manager.player_manager_spawn_point = $PlayerSpawnPoint
 		spawn_manager.setup_spawn_manager()
 	else:
 		NetworkManager.server_disconnected.connect(_on_server_disconnection)
+	
+	player_spawn_point.child_entered_tree.connect(_update_player_managers_visibility)
+	
+func _update_player_managers_visibility(new_player_manager: PlayerManager):
+	for player in player_spawn_point.get_children():
+		if player is PlayerManager:
+			var multiplayer_id = multiplayer.get_unique_id()
+			var player_network_id = player.name.to_int()
+			player.visible = player_network_id == multiplayer_id # Only the owning player should see player manager
+
 func _setup_match():
 	tick_timer.timeout.connect(_handle_tick_timer)
 
@@ -46,6 +57,9 @@ func _on_main_menu_button_button_up() -> void:
 func _on_server_disconnection():
 	emit_signal("back_to_main_menu")
 
+func _on_player_manager_added(player_manager: PlayerManager) -> void:
+	player_manager.attempt_to_build_unit.connect(_on_attempt_to_build_unit.bind(player_manager))
+
 func _on_attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int, player_manager: PlayerManager):
 	if not player_manager.resource_manager.current_resources >= unit_cost:
 		print("Not enough money!")
@@ -56,6 +70,6 @@ func _on_attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int, player_
 	var unit_to_build = UnitFactory.get_unit(unit_type)
 	# TODO: We should also respect build time here in the future
 	
-	player_manager.unit_to_build.global_position = player_manager.unit_spawn_point.global_position
+	unit_to_build.global_position = player_manager.unit_spawn_point.global_position
 	unit_holder.add_child(unit_to_build)
 	# TODO: Maybe an activate call?
