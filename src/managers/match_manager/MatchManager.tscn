@@ -1,12 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf8r25qehluc0"]
+[gd_scene load_steps=4 format=3 uid="uid://cf8r25qehluc0"]
 
 [ext_resource type="Script" uid="uid://bblhuok1xgi0r" path="res://src/managers/match_manager/match_manager.gd" id="1_ne37v"]
-[ext_resource type="PackedScene" uid="uid://fmkok0dgxsf" path="res://src/managers/player_manager/PlayerManager.tscn" id="2_8uuf2"]
+[ext_resource type="PackedScene" uid="uid://ch7o411j5qox5" path="res://src/managers/spawn_manager/SpawnPoint.tscn" id="3_woqpm"]
+[ext_resource type="Script" uid="uid://gfl68mjo0w2q" path="res://src/ui/default_button/DefaultButton.gd" id="3_yh6h2"]
 
 [node name="MatchManager" type="Node2D"]
 script = ExtResource("1_ne37v")
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://fmkok0dgxsf")
+spawn_path = NodePath("../PlayerSpawnPoint")
+
+[node name="MultiplayerUnitSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bc8x3ibidm0y4", "uid://b4mtaumqtpesk")
+spawn_path = NodePath("../UnitHolder")
+
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="PlayerManager" parent="." instance=ExtResource("2_8uuf2")]
+[node name="NetworkDebugVBox" type="VBoxContainer" parent="."]
+offset_left = 896.0
+offset_top = 64.0
+offset_right = 1050.0
+offset_bottom = 104.0
+
+[node name="SendTestMessageButton" type="Button" parent="NetworkDebugVBox"]
+layout_mode = 2
+text = "Send Test Message"
+script = ExtResource("3_yh6h2")
+metadata/_custom_type_script = "uid://gfl68mjo0w2q"
+
+[node name="MainMenuButton" type="Button" parent="NetworkDebugVBox"]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("3_yh6h2")
+metadata/_custom_type_script = "uid://gfl68mjo0w2q"
+
+[node name="PlayerSpawnPoint" type="Node2D" parent="."]
+
+[node name="SpawnPoint" parent="." instance=ExtResource("3_woqpm")]
+position = Vector2(677, 506)
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("3_woqpm")]
+position = Vector2(297, 491)
+
+[node name="UnitHolder" type="Node2D" parent="."]
+
+[connection signal="button_up" from="NetworkDebugVBox/SendTestMessageButton" to="." method="_on_send_test_message_button_button_up"]
+[connection signal="button_up" from="NetworkDebugVBox/MainMenuButton" to="." method="_on_main_menu_button_button_up"]

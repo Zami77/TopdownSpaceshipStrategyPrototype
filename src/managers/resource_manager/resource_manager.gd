@@ -6,7 +6,7 @@ class_name ResourceManager
 
 signal resources_changed()
 
-var current_resources := 0:
+@export var current_resources := 0:
 	get:
 		return current_resources
 	set(value):

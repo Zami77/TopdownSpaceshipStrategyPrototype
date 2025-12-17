@@ -12,6 +12,7 @@ class_name Unit
 @export var cost := 100
 @export var time_to_build := 10.0
 @export var supply_cost := 2
+@export var owning_player: PlayerManager.PlayerNumber = PlayerManager.PlayerNumber.PLAYER_ONE
 
 @onready var animated_sprite := $AnimatedSprite2D
 @onready var unit_vision := $UnitVisionArea2D
@@ -30,10 +31,9 @@ func _ready():
 	_setup_team_color()
 
 func _setup_vision_range():
-	# point 0 is the center of the unit
-	unit_vision_shape.polygon[1] *= vision_range
-	unit_vision_shape.polygon[2] *= vision_range
-	
+	# TODO: update vision range
+	pass
+
 func _setup_team_color():
 	# TODO: setup team color via shader
 	return

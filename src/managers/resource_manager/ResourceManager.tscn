@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dswvtnyi4rys4"]
+[gd_scene load_steps=3 format=3 uid="uid://dswvtnyi4rys4"]
 
 [ext_resource type="Script" uid="uid://dkcmjb4h4h3m3" path="res://src/managers/resource_manager/resource_manager.gd" id="1_m36k6"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m36k6"]
+properties/0/path = NodePath(".:current_resources")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="ResourceManager" type="Node2D"]
 script = ExtResource("1_m36k6")
 
 [node name="ResourceCollectionTimer" type="Timer" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m36k6")

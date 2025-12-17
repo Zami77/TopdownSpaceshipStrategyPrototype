@@ -38,18 +38,50 @@ func _load_scene(scene_path: String) -> void:
 	if current_scene is SettingsMenu:
 		current_scene.back_to_main_menu.connect(_on_back_to_main_menu)
 	
+	if current_scene is MatchManager:
+		current_scene.back_to_main_menu.connect(_end_of_match_to_main_menu)
+	
 	await transition_screen.faded_to_scene
 
 func _on_back_to_main_menu() -> void:
 	_load_scene(ScenePaths.main_menu)
 
+func _end_of_match_to_main_menu():
+	NetworkManager.terminate_connection()
+	_load_scene(ScenePaths.main_menu)
+	
 func _on_main_menu_option_selected(option: MainMenu.Option) -> void:
 	match option:
 		MainMenu.Option.PLAY_GAME:
 			_load_scene(ScenePaths.match_manager)
+		MainMenu.Option.HOST_GAME:
+			_setup_host_game()
+		MainMenu.Option.JOIN_GAME:
+			_setup_join_game()
 		MainMenu.Option.SETTINGS:
 			_load_scene(ScenePaths.settings_menu)
 		MainMenu.Option.CREDITS:
 			_load_scene(ScenePaths.credits_screen)
 		MainMenu.Option.EXIT_GAME:
 			get_tree().quit()
+
+func _setup_host_game():
+	_load_scene(ScenePaths.match_manager)
+	# TODO: find a better solution then waiting 2 seconds for the client to load before joining
+	var timer = get_tree().create_timer(2.0)
+	await timer.timeout
+	NetworkManager.host_game()
+	
+	if current_scene is MatchManager:
+		current_scene._setup_networking()
+
+func _setup_join_game():
+	_load_scene(ScenePaths.match_manager)
+	# TODO: find a better solution then waiting 2 seconds for the client to load before joining
+	var timer = get_tree().create_timer(2.0)
+	await timer.timeout
+	NetworkManager.join_game()
+	
+	if current_scene is MatchManager:
+		current_scene._setup_networking()
+	
