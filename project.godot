@@ -24,6 +24,7 @@ NetworkManager="*res://src/managers/network_manager/NetworkManager.gd"
 
 [display]
 
+window/size/always_on_top=true
 window/stretch/mode="viewport"
 
 [layer_names]
