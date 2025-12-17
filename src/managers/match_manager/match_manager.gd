@@ -28,7 +28,7 @@ func _setup_networking():
 	
 	player_spawn_point.child_entered_tree.connect(_update_player_managers_visibility)
 	
-func _update_player_managers_visibility(new_player_manager: PlayerManager):
+func _update_player_managers_visibility(_new_player_manager: PlayerManager):
 	for player in player_spawn_point.get_children():
 		if player is PlayerManager:
 			var multiplayer_id = multiplayer.get_unique_id()
@@ -71,5 +71,5 @@ func _on_attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int, player_
 	# TODO: We should also respect build time here in the future
 	
 	unit_to_build.global_position = player_manager.unit_spawn_point.global_position
-	unit_holder.add_child(unit_to_build)
+	unit_holder.add_child(unit_to_build, true)
 	# TODO: Maybe an activate call?

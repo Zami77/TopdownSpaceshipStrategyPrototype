@@ -28,5 +28,9 @@ func setup_networking():
 func _refresh_player_info():
 	resources_label.text = "Resources: %s" % [resource_manager.current_resources]
 
+@rpc("any_peer", "call_remote")
 func _handle_attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int):
-	emit_signal("attempt_to_build_unit", unit_type, unit_cost)
+	if NetworkManager.is_host():
+		emit_signal("attempt_to_build_unit", unit_type, unit_cost)
+	else:
+		_handle_attempt_to_build_unit.rpc(unit_type, unit_cost)

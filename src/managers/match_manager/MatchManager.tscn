@@ -11,6 +11,10 @@ script = ExtResource("1_ne37v")
 _spawnable_scenes = PackedStringArray("uid://fmkok0dgxsf")
 spawn_path = NodePath("../PlayerSpawnPoint")
 
+[node name="MultiplayerUnitSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bc8x3ibidm0y4", "uid://b4mtaumqtpesk")
+spawn_path = NodePath("../UnitHolder")
+
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.1
 
@@ -35,10 +39,10 @@ metadata/_custom_type_script = "uid://gfl68mjo0w2q"
 [node name="PlayerSpawnPoint" type="Node2D" parent="."]
 
 [node name="SpawnPoint" parent="." instance=ExtResource("3_woqpm")]
-position = Vector2(64, 64)
+position = Vector2(677, 506)
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("3_woqpm")]
-position = Vector2(256, 64)
+position = Vector2(297, 491)
 
 [node name="UnitHolder" type="Node2D" parent="."]
 

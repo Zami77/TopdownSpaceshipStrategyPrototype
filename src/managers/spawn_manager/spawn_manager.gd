@@ -35,8 +35,8 @@ func _add_player_to_game(network_id):
 	# TODO: make spawn points random for location
 	var spawn_point_pos = possible_spawn_points.pop_back()
 	network_id_to_spawn_point[player_to_add.network_id] = spawn_point_pos
-	player_manager_spawn_point.add_child(player_to_add)
+	player_manager_spawn_point.add_child(player_to_add, true)
 	player_to_add.setup_networking()
-	#player_to_add.global_position = network_id_to_spawn_point[player_to_add.network_id].global_position
-	
+	player_to_add.unit_spawn_point.global_position = \
+		network_id_to_spawn_point[player_to_add.network_id].global_position
 	emit_signal("player_added", player_to_add)
