@@ -5,6 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bcfden85wg7ip" path="res://src/units/Tank/Simple_Tank_Idle.png" id="2_ru4t0"]
 [ext_resource type="Texture2D" uid="uid://beqokcn0tllhy" path="res://src/units/Tank/Simple_Tank_Drive.png" id="4_urw4n"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf2yt"]
+atlas = ExtResource("2_4tgnf")
+region = Rect2(128, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ablj6"]
 atlas = ExtResource("2_4tgnf")
 region = Rect2(64, 0, 64, 64)
@@ -12,10 +16,6 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0da2"]
 atlas = ExtResource("2_4tgnf")
 region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kf2yt"]
-atlas = ExtResource("2_4tgnf")
-region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cjka2"]
 atlas = ExtResource("2_ru4t0")
@@ -46,17 +46,23 @@ resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kf2yt")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ablj6")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o0da2")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ablj6")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kf2yt")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [],
 "loop": true,
@@ -105,8 +111,7 @@ animations = [{
 [node name="Tank" instance=ExtResource("1_bugob")]
 can_attack = Array[int]([0])
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_ablj6")
-animation = &"attack"
-frame = 2
+frame = 4
 frame_progress = 1.0

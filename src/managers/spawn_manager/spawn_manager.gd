@@ -4,6 +4,7 @@ extends Node2D
 var possible_spawn_points: Array[SpawnPoint] = []
 var player_manager_spawn_point = null
 var network_id_to_spawn_point := {}
+var player_numbers = []
 
 signal player_added(player_added: PlayerManager)
 
@@ -11,9 +12,14 @@ func setup_spawn_manager() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	_fetch_spawn_points()
+	_fetch_player_numbers()
 	
 	_add_player_to_game(NetworkManager.SERVER_ID) # Host needs to add self
 
+func _fetch_player_numbers():
+	for player_number in PlayerManager.PlayerNumber.values():
+		player_numbers.append(player_number)
+		
 func _fetch_spawn_points():
 	for child in get_parent().get_children():
 		if child is SpawnPoint:
@@ -31,6 +37,7 @@ func _add_player_to_game(network_id):
 	player_to_add.network_id = network_id
 	player_to_add.name = str(network_id)
 	player_to_add.set_multiplayer_authority(NetworkManager.SERVER_ID)
+	player_to_add.player_number = player_numbers.pop_front()
 	
 	# TODO: make spawn points random for location
 	var spawn_point_pos = possible_spawn_points.pop_back()
