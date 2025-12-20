@@ -1,6 +1,7 @@
 extends Node2D
 class_name Unit
 
+@export var unit_name := "Unit Name"
 @export var durability := 5
 @export var attack_damage := 1
 @export var attack_cool_down := 1.0
@@ -34,7 +35,7 @@ signal death
 
 enum UnitTypeAltitude { GROUND = 0, AIR = 1 }
 enum ActionState { IDLE = 0, MOVE = 1, ATTACK = 2, DEATH = 3, STOP = 4 }
-enum UnitType { TANK = 0 }
+enum UnitType { TANK = 0, DRONE = 1, MARINE = 2, ANTI_AIR_VEHICLE = 3, MINER_BOT = 4 }
 
 func _ready():
 	_setup_vision_range()
@@ -47,6 +48,7 @@ func _setup_stats_label():
 	var stats_text = "Durability: %d / %d" % [current_durability, durability]
 	print("%s %s" % [self.name, stats_text])
 	# stats_label.text = stats_text
+	
 func _setup_signals():
 	animated_sprite.animation_finished.connect(_handle_animation_finished)
 
@@ -139,9 +141,9 @@ func _handle_animation_finished():
 	# This should only be called when attacking is complete, for now.
 	if animated_sprite.animation == "attack":
 		current_state = ActionState.IDLE
+	elif animated_sprite.animation == "death":
+		death.emit()
 
 func _death():
 	current_state = ActionState.DEATH
-	print("%s died!" % [self.name])
-	death.emit()
-	
+	print("%s died!" % [self.name])	

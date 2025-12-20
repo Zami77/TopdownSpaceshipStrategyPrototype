@@ -11,3 +11,4 @@ static var player_manager_instance = load("res://src/managers/player_manager/Pla
 
 # Units
 static var unit_tank = preload("res://src/units/Tank/Tank.tscn")
+static var unit_drone = preload("res://src/units/Drone/Drone.tscn")

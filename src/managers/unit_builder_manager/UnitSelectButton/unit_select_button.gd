@@ -9,15 +9,22 @@ var build_time := 10
 signal attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int)
 
 func _ready() -> void:
-	_setup_icon()
+	_fetch_unit_data()
 	_setup_signals()
 
 func _setup_signals():
 	self.button_up.connect(_on_button_up)
 
-func _setup_icon():
-	# TODO: Implement fetching cost, build time, and others from unit scene
-	pass
+func _fetch_unit_data():
+	var unit_build = UnitFactory.get_unit(unit_type)
+	
+	cost = unit_build.cost
+	build_time = unit_build.time_to_build
+	self.text = unit_build.unit_name
+	
+	# After we fetch the data, we don't need the unit anymore
+	unit_build.queue_free()
+	
 
 func _on_button_up():
 	attempt_to_build_unit.emit(unit_type, cost)
