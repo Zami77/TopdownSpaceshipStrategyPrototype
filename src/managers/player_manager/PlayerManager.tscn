@@ -13,6 +13,7 @@ script = ExtResource("1_deaka")
 replication_config = SubResource("SceneReplicationConfig_et5sl")
 
 [node name="ResourceManager" parent="." instance=ExtResource("1_7xb45")]
+starting_resources = 150
 
 [node name="PlayerInfo" type="VBoxContainer" parent="."]
 offset_right = 40.0

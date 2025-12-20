@@ -12,7 +12,7 @@ _spawnable_scenes = PackedStringArray("uid://fmkok0dgxsf")
 spawn_path = NodePath("../PlayerSpawnPoint")
 
 [node name="MultiplayerUnitSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://bc8x3ibidm0y4", "uid://b4mtaumqtpesk")
+_spawnable_scenes = PackedStringArray("uid://bc8x3ibidm0y4", "uid://b4mtaumqtpesk", "uid://csp4r4midcnk1")
 spawn_path = NodePath("../UnitHolder")
 
 [node name="TickTimer" type="Timer" parent="."]

@@ -72,5 +72,13 @@ func _on_attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int, player_
 	
 	unit_to_build.global_position = player_manager.unit_spawn_point.global_position
 	unit_to_build.owning_player = player_manager.player_number
+	_connect_to_unit_signals(unit_to_build)
 	unit_holder.add_child(unit_to_build, true)
 	# TODO: Maybe an activate call?
+
+func _connect_to_unit_signals(unit_added: Unit) -> void:
+	unit_added.death.connect(_on_unit_death.bind(unit_added))
+
+func _on_unit_death(dead_unit: Unit) -> void:
+	# For now just remove the unit
+	dead_unit.queue_free()
