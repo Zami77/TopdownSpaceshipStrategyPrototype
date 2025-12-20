@@ -59,8 +59,9 @@ func _setup_team_color():
 	return
 
 func _physics_process(delta):
-	_handle_animation_state()
-	_handle_unit_execution(delta)
+	if multiplayer.is_server():
+		_handle_animation_state()
+		_handle_unit_execution(delta)
 
 func _handle_animation_state():
 	match current_state:
