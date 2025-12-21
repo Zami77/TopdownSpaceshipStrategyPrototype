@@ -5,6 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bgrnnw3bmxul0" path="res://src/managers/unit_builder_manager/UnitBuilderManager.tscn" id="3_et5sl"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_et5sl"]
+properties/0/path = NodePath("UnitSpawnPoint:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:player_number")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="PlayerManager" type="Node2D"]
 script = ExtResource("1_deaka")

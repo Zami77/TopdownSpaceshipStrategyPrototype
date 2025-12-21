@@ -39,10 +39,10 @@ metadata/_custom_type_script = "uid://gfl68mjo0w2q"
 [node name="PlayerSpawnPoint" type="Node2D" parent="."]
 
 [node name="SpawnPoint" parent="." instance=ExtResource("3_woqpm")]
-position = Vector2(299, 326)
+position = Vector2(512, 512)
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("3_woqpm")]
-position = Vector2(297, 491)
+position = Vector2(576, 128)
 
 [node name="UnitHolder" type="Node2D" parent="."]
 
