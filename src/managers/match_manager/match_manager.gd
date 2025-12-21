@@ -74,8 +74,26 @@ func _on_attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int, player_
 	unit_to_build.owning_player = player_manager.player_number
 	_connect_to_unit_signals(unit_to_build)
 	unit_holder.add_child(unit_to_build, true)
+	var enemy_spawn_pos = _get_enemy_spawn_position(unit_to_build)
+	unit_to_build.look_at(enemy_spawn_pos)
+	
 	# TODO: Maybe an activate call?
 
+func _get_enemy_spawn_position(unit: Unit) -> Vector2:
+	var enemy_spawn_pos: Vector2
+	var friendly_spawn_pos: Vector2
+	for player in player_spawn_point.get_children():
+		
+		if player is PlayerManager:
+			if player.player_number == unit.owning_player:
+				friendly_spawn_pos = player.unit_spawn_point.global_position
+			else:
+				enemy_spawn_pos = player.unit_spawn_point.global_position
+				
+	return enemy_spawn_pos
+			
+	
+	
 func _connect_to_unit_signals(unit_added: Unit) -> void:
 	unit_added.death.connect(_on_unit_death.bind(unit_added))
 

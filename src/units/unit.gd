@@ -90,7 +90,7 @@ func _handle_unit_execution(delta):
 	else:
 			# TODO: Add unit logic to move towards next objective point, for now it'll move forward
 			current_state = ActionState.MOVE
-			position += (speed * delta) * (Vector2.UP.rotated(transform.get_rotation()))
+			position += (speed * delta) * (Vector2.RIGHT.rotated(transform.get_rotation()))
 
 func _can_attack() -> bool:
 	return attack_cooldown_timer.is_stopped()		

@@ -162,5 +162,9 @@ animations = [{
 can_attack = Array[int]([0])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
+rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_ablj6")
-frame_progress = 0.0
+animation = &"idle"
+frame_progress = 0.93547285
+flip_h = false
+flip_v = false

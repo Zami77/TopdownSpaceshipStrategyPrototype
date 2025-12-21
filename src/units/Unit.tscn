@@ -13,6 +13,9 @@ properties/1/replication_mode = 2
 properties/2/path = NodePath("AnimatedSprite2D:animation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjd1c"]
 atlas = ExtResource("2_f617a")
@@ -111,6 +114,7 @@ script = ExtResource("1_5c4v2")
 replication_config = SubResource("SceneReplicationConfig_5c4v2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_5c4v2")
 animation = &"death"
 frame_progress = 0.30656594
@@ -137,6 +141,7 @@ shape = SubResource("RectangleShape2D_5c4v2")
 one_shot = true
 
 [node name="StatsLabel" type="Label" parent="."]
+visible = false
 offset_left = -64.0
 offset_top = -128.0
 offset_right = 64.0
