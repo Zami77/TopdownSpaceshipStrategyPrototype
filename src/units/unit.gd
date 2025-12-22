@@ -31,6 +31,8 @@ var current_durability := durability :
 			_death()
 		_setup_stats_label()
 
+var death_animation_played = false
+
 signal death
 
 enum UnitTypeAltitude { GROUND = 0, AIR = 1 }
@@ -61,9 +63,9 @@ func _setup_team_color():
 	return
 
 func _physics_process(delta):
-	if multiplayer.is_server():
-		_handle_animation_state()
+	if NetworkManager.is_host:
 		_handle_unit_execution(delta)
+	_handle_animation_state()
 
 func _handle_animation_state():
 	match current_state:
@@ -74,7 +76,9 @@ func _handle_animation_state():
 		ActionState.MOVE:
 			animated_sprite.play("move")
 		ActionState.DEATH:
-			animated_sprite.play("death")
+			if not death_animation_played:		
+				animated_sprite.play("death")
+				death_animation_played = true
 			
 func _handle_unit_execution(delta):
 	if current_state == ActionState.DEATH:
@@ -142,6 +146,7 @@ func _handle_animation_finished():
 	if animated_sprite.animation == "attack":
 		current_state = ActionState.IDLE
 	elif animated_sprite.animation == "death":
+		visible = false	
 		death.emit()
 
 func _death():

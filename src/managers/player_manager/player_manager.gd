@@ -30,7 +30,7 @@ func _refresh_player_info():
 
 @rpc("any_peer", "call_remote")
 func _handle_attempt_to_build_unit(unit_type: Unit.UnitType, unit_cost: int):
-	if NetworkManager.is_host():
+	if NetworkManager.is_host:
 		emit_signal("attempt_to_build_unit", unit_type, unit_cost)
 	else:
 		_handle_attempt_to_build_unit.rpc(unit_type, unit_cost)

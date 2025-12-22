@@ -3,6 +3,8 @@ extends Node
 const SERVER_PORT = 8080
 const SERVER_ID = 1
 
+var is_host = false
+
 signal server_disconnected
 
 func host_game():
@@ -12,6 +14,7 @@ func join_game():
 	create_client()
 	
 func create_server():
+	is_host = true
 	var enet_network_peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 	enet_network_peer.create_server(SERVER_PORT)
 	multiplayer.multiplayer_peer = enet_network_peer
@@ -57,6 +60,3 @@ func terminate_connection():
 		_disconnect_client_connection_signals()
 	multiplayer.multiplayer_peer = null
 	print("Connection terminated")
-
-func is_host():
-	return multiplayer.get_unique_id() == SERVER_ID

@@ -198,5 +198,3 @@ cost = 125
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_baq06")
-animation = &"move"
-frame_progress = 0.0

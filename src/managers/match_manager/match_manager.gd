@@ -17,7 +17,7 @@ func _ready():
 	_start_match()
 
 func _setup_networking():
-	if NetworkManager.is_host():
+	if NetworkManager.is_host:
 		var spawn_manager: SpawnManager = ScenePaths.spawn_manager_instance.instantiate()
 		add_child(spawn_manager)
 		spawn_manager.player_added.connect(_on_player_manager_added)
